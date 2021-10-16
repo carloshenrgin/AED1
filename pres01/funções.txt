@@ -1,0 +1,49 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+int pot(int base, int exp){
+    int res = 1;
+    for (int i = 0; i < exp; i++) res*=base;
+    return res;
+}
+
+int verif_negpos(double num){
+    if(num > 0) return 1;
+    if(num == 0) return 0;
+    if(num < 0) return -1;
+}
+
+int perf_sq(int sq){
+    for (int i = 1; i*i <= sq; i++){
+        if((sq/i == i) && (sq%i == 0)) return 1;
+    }
+    return 0;
+}
+
+double* vet_prod(double *vet_1, double *vet_2){
+    double *vet_res = (double*) malloc(sizeof(double)*10);
+    for(int i = 0; i<10; i++){
+        vet_res[i] = vet_1[i]*vet_2[i];
+    }
+    return vet_res;
+}
+
+int main(){
+    // teste das funções
+    int potencia = pot(2,5);
+    printf("%d\n", potencia);
+
+    int a = verif_negpos(6);
+    int b = verif_negpos(0);
+    int c = verif_negpos(-8);
+    printf("%d %d %d\n", a, b, c);
+
+    a = perf_sq(169);
+    b = perf_sq(12);
+    printf("%d\n%d\n", a, b);
+
+    double x[10] = {1,2,3,4,5,6,7,8,9,0}, y[10] = {0,9,8,7,6,5,4,3,2,1}, *z = vet_prod(x,y);
+    for(int i = 0; i<10; i++) printf("%lf\n", z[i]);
+
+    return 0;
+}
